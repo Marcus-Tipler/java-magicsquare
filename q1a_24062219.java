@@ -40,19 +40,24 @@ public class q1a_24062219 {
             System.out.println();
         }
     }
+    static int execVerify(String[] args) {
+        if (args.length > 0) {
+            int n = Integer.parseInt(args[0]);
+            if (n % 2 == 0) throw new RuntimeException("\nThe entered value must be an odd number, please type the command and try again.\nUsage: java q1a_24062219 [odd number]");
+
+            return n;
+        }
+        else
+            throw new RuntimeException("\nUsage: java q1a_24062219 [odd number]");
+    }
 
     // ----------------------------------------------------------------
     // Main method to execute the program
     // ----------------------------------------------------------------
     public static void main(String[] args) {
-        if (args.length > 0) {
-            int n = Integer.parseInt(args[0]);
-            if (n % 2 == 0) throw new RuntimeException("n must be odd");
-
-            int[][] execSquared = execSquare(n);
-            execPrint(execSquared, n); 
-        }
-        else
-            System.out.println("Usage: java Q1A.java [odd number]");
+        int n = execVerify(args);
+        int[][] execSquared = execSquare(n);
+        execPrint(execSquared, n);
     }
+    
 }
