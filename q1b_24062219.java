@@ -2,17 +2,17 @@ import java.util.Random;
 
 public class q1b_24062219 {
     // ----------------------------------------------------------------
-    // Executes the square matrix creation and printing process
+    // Executes the square matrix creation and printing process.
     // ----------------------------------------------------------------
     static int[][] execSquare(int n) {
         int[][] square = new int[n][n];
 
-        // Set the default values and initial value of the array
+        // Set the default values and initial value of the array.
         int x = 1;
         int y = ((n+1)/2);
         square[x][y] = 1;
 
-        // Fill the rest of the array with values based on the spiral pattern
+        // Fill the rest of the array with values based on the spiral pattern.
         for (int i = 2; i <= n*n; i++) {
             int nx = ((x-1)+n) % n;
             int ny = ((y-1)+n) % n;
@@ -29,12 +29,12 @@ public class q1b_24062219 {
     }
 
     // ----------------------------------------------------------------
-    // Executes the printing process of the square matrix
+    // Executes the printing process of the square matrix.
     // ----------------------------------------------------------------
     static void execPrint(int[][] execSquared, int n) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                // Aligns the columns properly
+                // Properly aligns the columns from the print display.
                 if (execSquared[i][j] < 10)  System.out.print(" ");
                 if (execSquared[i][j] < 100) System.out.print(" "); 
                 System.out.print(execSquared[i][j] + " ");
@@ -54,16 +54,18 @@ public class q1b_24062219 {
     }
 
     // ----------------------------------------------------------------
-    // Executes a verification and error checking on user input
+    // Executes a verification and error checking on user input.
     // ----------------------------------------------------------------
     static void execShuffle(int[][] a) {
         Random randInt = new Random();
 
+        // Shuffles the elements of the array in-place using the Fisher-Yates algorithm for the length of the array (n**2).
         for (int i = a.length - 1; i > 0; i--) {
             for (int j = a[i].length - 1; j > 0; j--) {
                 int m = randInt.nextInt(i + 1);
                 int n = randInt.nextInt(j + 1);
 
+                // Swap the elements at the current indices using a buffer.
                 int buffer = a[i][j];
                 a[i][j] = a[m][n];
                 a[m][n] = buffer;
@@ -72,13 +74,14 @@ public class q1b_24062219 {
     }
 
     // ----------------------------------------------------------------
-    // Main method to execute the program
+    // Main method to execute the program.
     // ----------------------------------------------------------------
     public static void main(String[] args) {
         int n = execVerify(args);
         int[][] execSquared = execSquare(n);
-        //execPrint(execSquared, n);
+        //execPrint(execSquared, n); //prints the original magic square (un-shuffled).
         execShuffle(execSquared);
         execPrint(execSquared, n);
+        
     }
 }
