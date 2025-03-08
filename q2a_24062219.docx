@@ -1,0 +1,17 @@
+// public class q2a_24062219 extends q2b_24062219{
+//     public static void main(String[] args) {
+//         q2b_24062219 square = new q2b_24062219();
+//         int n = square.execVerify(args);
+//         int[][] execSquared = square.execSquare(n);
+//         square.execPrint(execSquared, n);
+//     }
+// }
+// public class q2b_24062219 extends q2a_24062219{
+
+THE PROBLEM AND THE REQUIREMENTS THAT WERE SET OUT.
+
+THE PROBLEMS WE FACED IN MAKING OUR SOLUTION TO THE ORIGINAL PROBLEM.
+
+OUR LEARNING OUTCOMES (links with what the professors wanted us to learn).
+
+OUR FINAL SOLUTION TO THE PROBLEM ITSELF.

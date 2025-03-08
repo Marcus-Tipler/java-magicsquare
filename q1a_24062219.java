@@ -1,3 +1,4 @@
+
 public class q1a_24062219 {
     // ----------------------------------------------------------------
     // Executes the square matrix creation and printing process
@@ -40,6 +41,10 @@ public class q1a_24062219 {
             System.out.println();
         }
     }
+
+    // ----------------------------------------------------------------
+    // Executes a verification and error checking on user input
+    // ----------------------------------------------------------------
     static int execVerify(String[] args) {
         if (args.length > 0) {
             int n = Integer.parseInt(args[0]);
