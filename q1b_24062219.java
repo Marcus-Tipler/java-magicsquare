@@ -1,5 +1,4 @@
 import java.util.Random;
-import java.io.*;
 
 public class q1b_24062219 {
     // ----------------------------------------------------------------
@@ -43,6 +42,9 @@ public class q1b_24062219 {
             System.out.println();
         }
     }
+    // ----------------------------------------------------------------
+    // Executes a verification and error checking on user input.
+    // ----------------------------------------------------------------
     static int execVerify(String[] args) {
         if (args.length > 0) {
             int n = Integer.parseInt(args[0]);
@@ -55,37 +57,33 @@ public class q1b_24062219 {
     }
 
     // ----------------------------------------------------------------
-    // Executes a verification and error checking on user input.
+    // Duplicates the magic square and makes shuffled array.
     // ----------------------------------------------------------------
-    static void execShuffle(int[][] a) {
+    static int[][] execShuffle(int[][] a, int max) {
+        // Creates a copy of the magic square array.
         Random randInt = new Random();
+        int[][] aCopy = new int[max][max];
+        System.arraycopy(a, 0, aCopy, 0, a.length);
 
         // Shuffles the elements of the array in-place using the Fisher-Yates algorithm for the length of the array (n**2).
-        for (int i = a.length - 1; i > 0; i--) {
-            for (int j = a[i].length - 1; j > 0; j--) {
+        for (int i = aCopy.length - 1; i > 0; i--) {
+            for (int j = aCopy[i].length - 1; j > 0; j--) {
                 int m = randInt.nextInt(i + 1);
                 int n = randInt.nextInt(j + 1);
 
                 // Swap the elements at the current indices using a buffer.
-                int buffer = a[i][j];
-                a[i][j] = a[m][n];
-                a[m][n] = buffer;
+                int buffer = aCopy[i][j];
+                aCopy[i][j] = aCopy[m][n];
+                aCopy[m][n] = buffer;
             }
         }
+        // Returns the shuffled array.
+        return aCopy;
     }
 
     static void requestInput() {
-        DataInputStream r = new DataInputStream(System.in);
-        
         System.out.println("\nPlease enter the following details in to the command line: [ROW] [COLUMN] [DIRECTION]");
-        System.out.print("Enter an integer: ");
-        int i = Integer.parseInt(r.readLine());
-
-        // Reading strings
-        System.out.print("Enter a string: ");
-        String s = r.readLine();
-        System.out.println("You entered integer: " + i);
-        System.out.println("You entered string: " + s);
+        
     }
 
     // ----------------------------------------------------------------
@@ -95,7 +93,7 @@ public class q1b_24062219 {
         int n = execVerify(args);
         int[][] execSquared = execSquare(n);
         //execPrint(execSquared, n); //prints the original magic square (un-shuffled).
-        execShuffle(execSquared);
+        int[][] execShuffled = execShuffle(execSquared, n);
         execPrint(execSquared, n);
         requestInput();
     }
