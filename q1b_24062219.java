@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.io.*;
 
 public class q1b_24062219 {
     // ----------------------------------------------------------------
@@ -73,6 +74,20 @@ public class q1b_24062219 {
         }
     }
 
+    static void requestInput() {
+        DataInputStream r = new DataInputStream(System.in);
+        
+        System.out.println("\nPlease enter the following details in to the command line: [ROW] [COLUMN] [DIRECTION]");
+        System.out.print("Enter an integer: ");
+        int i = Integer.parseInt(r.readLine());
+
+        // Reading strings
+        System.out.print("Enter a string: ");
+        String s = r.readLine();
+        System.out.println("You entered integer: " + i);
+        System.out.println("You entered string: " + s);
+    }
+
     // ----------------------------------------------------------------
     // Main method to execute the program.
     // ----------------------------------------------------------------
@@ -82,6 +97,6 @@ public class q1b_24062219 {
         //execPrint(execSquared, n); //prints the original magic square (un-shuffled).
         execShuffle(execSquared);
         execPrint(execSquared, n);
-        
+        requestInput();
     }
 }
