@@ -1,5 +1,7 @@
 
 public class q1a_24062219 {
+
+
     // ----------------------------------------------------------------
     // Executes the square matrix creation and printing process
     // ----------------------------------------------------------------
@@ -27,6 +29,7 @@ public class q1a_24062219 {
         return square;
     }
 
+
     // ----------------------------------------------------------------
     // Executes the printing process of the square matrix
     // ----------------------------------------------------------------
@@ -42,6 +45,7 @@ public class q1a_24062219 {
         }
     }
 
+
     // ----------------------------------------------------------------
     // Executes a verification and error checking on user input
     // ----------------------------------------------------------------
@@ -55,14 +59,14 @@ public class q1a_24062219 {
         else
             throw new RuntimeException("\nUsage: java q1a_24062219 [odd number]");
     }
+    
 
     // ----------------------------------------------------------------
     // Main method to execute the program
     // ----------------------------------------------------------------
     public static void main(String[] args) {
-        int n = execVerify(args);
-        int[][] execSquared = execSquare(n);
-        execPrint(execSquared, n);
+        int verified = execVerify(args);
+        int[][] execSquared = execSquare(verified);
+        execPrint(execSquared, verified);
     }
-    
 }
