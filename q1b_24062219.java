@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class q1b_24062219 extends q1a_24062219 {
@@ -21,12 +22,9 @@ public class q1b_24062219 extends q1a_24062219 {
         int checkedSize = execVerify(sizeOfMatrix);
         int[][] execSquared = execSquare(checkedSize); //FIXME: Whilst value is negative, loop and ask again.
         execPrint(execSquared, checkedSize);
-        // TEST
-        int[][] shuffled = execShift(execSquared, 1, 1, 1);
+        // int[][] shuffled = execRandom(checkedSize, execSquared);
+        int[][] shuffled = execShift(execSquared, 3 - 1, 1 - 1, 1);
         execPrint(shuffled, checkedSize);
-        // ...
-        // execPrint(execSquared, checkedSize);
-        // System.out.println("Congratulations! You've made a magic square!");
     }
 
 
@@ -55,8 +53,27 @@ public class q1b_24062219 extends q1a_24062219 {
 
         // Swap the elements at the current indices using a buffer.
         int buffer = aCopy[row][col];
-        aCopy[row][col] = aCopy[row + 1][col + 1];
-        aCopy[row + 1][col + 1] = buffer;
+        int n = square.length;
+
+        switch (dir) {
+            case 1 -> { // Right
+                aCopy[col][row] = aCopy[col][(row + 1 + n) % n];
+                aCopy[col][(row + 1 + n) % n] = buffer;
+            }
+            case 2 -> { // Down
+                aCopy[col][row] = aCopy[(col + 1 + n) % n][row];
+                aCopy[(col + 1 + n) % n][row] = buffer;
+            }
+            case 3 -> { // Left
+                aCopy[col][row] = aCopy[col][(row - 1 + n) % n];
+                aCopy[col][(row - 1 + n) % n] = buffer;
+            }
+            default -> { // Up
+                aCopy[col][row] = aCopy[(col - 1 + n) % n][row];
+                aCopy[(col - 1 + n) % n][row] = buffer;
+            }
+        }
+
         return aCopy;
     }
 
@@ -64,6 +81,17 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     // Shuffle the matrix using RandInt and 'execShift' function.
     // ----------------------------------------------------------------
+    static int[][] execRandom(int arraySize, int[][] array) {
+        int[][] shuffled = null;
+        Random randInt = new Random();
+        for (int i = 0; i < arraySize*arraySize; i++) {
+            int row = randInt.nextInt(0, 3);
+            int col = randInt.nextInt(0, 3);
+            int dir = randInt.nextInt(1, 4);
+            shuffled = execShift(array, row, col, dir);
+        }
+        return shuffled;
+    }
 
 
     // ----------------------------------------------------------------
