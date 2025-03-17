@@ -5,7 +5,7 @@ public class q1a_24062219 {
     // ----------------------------------------------------------------
     // Executes the square matrix creation and printing process
     // ----------------------------------------------------------------
-    public static int[][] execSquare(int n) {
+    public int[][] execSquare(int n) {
         int[][] square = new int[n][n];
 
         // Set the default values and initial value of the array
@@ -32,7 +32,7 @@ public class q1a_24062219 {
     // ----------------------------------------------------------------
     // Executes the printing process of the square matrix
     // ----------------------------------------------------------------
-    public static void execPrint(int[][] execSquared, int n) {
+    public void execPrint(int[][] execSquared, int n) {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 // Aligns the columns properly
@@ -48,7 +48,7 @@ public class q1a_24062219 {
     // ----------------------------------------------------------------
     // Executes a verification and error checking on user input
     // ----------------------------------------------------------------
-    public static int execVerify(String[] args) {
+    public int execVerify(String[] args) {
         if (args.length > 0) {
             int n = Integer.parseInt(args[0]);
             if (n % 2 == 0) throw new RuntimeException("\nThe entered value must be an odd number, please type the command and try again.\nUsage: java q1a_24062219 [odd number]");
@@ -64,8 +64,9 @@ public class q1a_24062219 {
     // Main method to execute the program
     // ----------------------------------------------------------------
     public static void main(String[] args) {
-        int verified = execVerify(args);
-        int[][] execSquared = execSquare(verified);
-        execPrint(execSquared, verified);
+        q1a_24062219 q1a = new q1a_24062219();
+        int verified = q1a.execVerify(args);
+        int[][] execSquared = q1a.execSquare(verified);
+        q1a.execPrint(execSquared, verified);
     }
 }
