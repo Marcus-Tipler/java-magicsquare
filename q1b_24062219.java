@@ -22,8 +22,8 @@ public class q1b_24062219 extends q1a_24062219 {
         int checkedSize = execVerify(sizeOfMatrix);
         int[][] execSquared = execSquare(checkedSize); //FIXME: Whilst value is negative, loop and ask again.
         execPrint(execSquared, checkedSize);
-        // int[][] shuffled = execRandom(checkedSize, execSquared);
-        int[][] shuffled = execShift(execSquared, 3 - 1, 1 - 1, 1);
+        int[][] shuffled = execRandom(checkedSize, execSquared);
+        // int[][] shuffled = execShift(execSquared, 3 - 1, 1 - 1, 1);
         execPrint(shuffled, checkedSize);
     }
 
@@ -52,25 +52,28 @@ public class q1b_24062219 extends q1a_24062219 {
         // int n = randInt.nextInt(j + 1);
 
         // Swap the elements at the current indices using a buffer.
-        int buffer = aCopy[row][col];
         int n = square.length;
 
         switch (dir) {
             case 1 -> { // Right
-                aCopy[col][row] = aCopy[col][(row + 1 + n) % n];
-                aCopy[col][(row + 1 + n) % n] = buffer;
+                int buffer = aCopy[col][(row - 1 + n) % n];
+                aCopy[col][(row - 1 + n) % n] = aCopy[col][row];
+                aCopy[col][row] = buffer;
             }
             case 2 -> { // Down
-                aCopy[col][row] = aCopy[(col + 1 + n) % n][row];
-                aCopy[(col + 1 + n) % n][row] = buffer;
+                int buffer = aCopy[(col + 1 + n) % n][row];
+                aCopy[(col + 1 + n) % n][row] = aCopy[col][row];
+                aCopy[col][row] = buffer;
             }
             case 3 -> { // Left
-                aCopy[col][row] = aCopy[col][(row - 1 + n) % n];
-                aCopy[col][(row - 1 + n) % n] = buffer;
+                int buffer = aCopy[col][(row + 1 + n) % n];
+                aCopy[col][(row + 1 + n) % n] = aCopy[col][row];
+                aCopy[col][row] = buffer;
             }
             default -> { // Up
-                aCopy[col][row] = aCopy[(col - 1 + n) % n][row];
-                aCopy[(col - 1 + n) % n][row] = buffer;
+                int buffer = aCopy[(col - 1 + n) % n][row];
+                aCopy[(col - 1 + n) % n][row] = aCopy[col][row];
+                aCopy[col][row] = buffer;
             }
         }
 
@@ -97,6 +100,7 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     // Prompt the user with instructions and the shuffled matrix.
     // ----------------------------------------------------------------
+
 
     
     // ----------------------------------------------------------------
