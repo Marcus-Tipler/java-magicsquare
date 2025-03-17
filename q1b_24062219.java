@@ -21,24 +21,24 @@ public class q1b_24062219 extends q1a_24062219 {
         // <STEP 6> Start a loop that queries and performs the users
         // requested actions until the matrix is that of a magic square.
         // ----------------------------------------------------------------
-
-        String[] sizeOfMatrix = execStart(); 
-        int checkedSize = execVerify(sizeOfMatrix);
-        int[][] execSquared = execSquare(checkedSize);
+        q1b_24062219 q1b = new q1b_24062219();
+        String[] sizeOfMatrix = q1b.execStart(); 
+        int checkedSize = q1b.execVerify(sizeOfMatrix);
+        int[][] execSquared = q1b.execSquare(checkedSize);
         // execPrint(execSquared, checkedSize);
-        int[][] shuffled = execRandom(checkedSize, execSquared); 
+        int[][] shuffled = q1b.execRandom(checkedSize, execSquared); 
         // int[][] shuffled = execShift(execSquared, 1 - 1, 1 - 1, 1); 
-        execPrint(shuffled, checkedSize);
-        execExplain();
-        String[] interactReturn = execInteract();
-        execTEST();
+        q1b.execPrint(shuffled, checkedSize);
+        q1b.execExplain();
+        String[] interactReturn = q1b.execInteract();
+        q1b.execTEST();
     }
 
 
     // ----------------------------------------------------------------
     // Print instructions and Query user about size of array.
     // ----------------------------------------------------------------
-    static String[] execStart() {
+    public String[] execStart() {
         System.out.println("Hello user! Welcome to the Magic Square Game!");
         System.out.println("Please enter an odd number for the size of the array (3, 5, 7, etc.): ");
         String sizeOfMatrix = globalScanner.nextLine();
@@ -51,7 +51,7 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     // Shifts the matrix based on Column, Row and Direction data.
     // ----------------------------------------------------------------
-    static int[][] execShift(int[][] square, int row, int col, int dir) {
+    public int[][] execShift(int[][] square, int row, int col, int dir) {
         // Random randInt = new Random();
         int[][] aCopy = (int[][])square.clone();
         // int m = randInt.nextInt(i + 1);
@@ -89,7 +89,7 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     // Shuffle the matrix using RandInt and 'execShift' function.
     // ----------------------------------------------------------------
-    static int[][] execRandom(int arraySize, int[][] array) {
+    public int[][] execRandom(int arraySize, int[][] array) {
         int[][] shuffled = null;
         Random randInt = new Random();
         for (int i = 0; i < arraySize*arraySize; i++) {
@@ -105,7 +105,7 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     // Prompt the user with instructions and the shuffled matrix.
     // ----------------------------------------------------------------
-    static void execExplain() {
+    public void execExplain() {
         System.out.println("All you have to do is the following");
     }
 
@@ -113,7 +113,7 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     // Query the user about the shift they'd like to perform.
     // ----------------------------------------------------------------
-    static String[] execInteract() {
+    public String[] execInteract() {
         System.out.println("TEST");
         System.out.println("ANOTHER TEST: ");
         String sizeOfMatrix = globalScanner.nextLine();
@@ -142,9 +142,9 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     // Initiate the Scanner for the entire program.
     // ----------------------------------------------------------------
-    static Scanner globalScanner = new Scanner(System.in);
+    public Scanner globalScanner = new Scanner(System.in);
 
-    static void execTEST() {
+    public void execTEST() {
         System.out.println(checkedSize);
     }
 }
