@@ -34,6 +34,7 @@ kanban-plugin: board
 **Complete**
 - [x] Q1B: Step 3 - Make finished square.
 - [x] Q1B: Step 2 - Verify user input.
+- [x] 
 - [x] [[Q1B Step 1 - Print instructions and Query user about size of array.]]
 - [x] [[Q1B New code structure for entire program]]
 - [x] [[Q1B New idea make a function that takes a row, column and direction.]]
