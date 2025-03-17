@@ -21,10 +21,12 @@ public class q1b_24062219 extends q1a_24062219 {
         String[] sizeOfMatrix = execStart(); 
         int checkedSize = execVerify(sizeOfMatrix);
         int[][] execSquared = execSquare(checkedSize);
-        execPrint(execSquared, checkedSize);
+        // execPrint(execSquared, checkedSize);
         int[][] shuffled = execRandom(checkedSize, execSquared); 
         // int[][] shuffled = execShift(execSquared, 1 - 1, 1 - 1, 1); 
         execPrint(shuffled, checkedSize);
+        execExplain();
+        String[] interactReturn = execInteract();
     }
 
 
@@ -33,11 +35,10 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     static String[] execStart() {
         System.out.println("Hello user! Welcome to the Magic Square Game!");
-        Scanner requestSizeOfMatrix = new Scanner(System.in);
         System.out.println("Please enter an odd number for the size of the array (3, 5, 7, etc.): ");
-        String sizeOfMatrix = requestSizeOfMatrix.nextLine();
+        String sizeOfMatrix = globalScanner.nextLine();
         System.out.println("Matrix Size is: " + sizeOfMatrix);
-        requestSizeOfMatrix.close();
+        // requestSizeOfMatrix.close();
         return new String[]{sizeOfMatrix};
     }
 
@@ -76,7 +77,6 @@ public class q1b_24062219 extends q1a_24062219 {
                 aCopy[col][row] = buffer;
             }
         }
-
         return aCopy;
     }
 
@@ -100,12 +100,22 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     // Prompt the user with instructions and the shuffled matrix.
     // ----------------------------------------------------------------
-
+    static void execExplain() {
+        System.out.println("All you have to do is the following");
+    }
 
     
     // ----------------------------------------------------------------
     // Query the user about the shift they'd like to perform.
     // ----------------------------------------------------------------
+    static String[] execInteract() {
+        System.out.println("TEST");
+        System.out.println("ANOTHER TEST: ");
+        String sizeOfMatrix = globalScanner.nextLine();
+        System.out.println("TEST is: " + sizeOfMatrix);
+        globalScanner.close();
+        return new String[]{sizeOfMatrix};
+    }
 
 
     // ----------------------------------------------------------------
@@ -121,4 +131,11 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     // Prints the end game results and text.
     // ----------------------------------------------------------------
+
+
+
+    // ----------------------------------------------------------------
+    // Initiate the Scanner for the entire program.
+    // ----------------------------------------------------------------
+    static Scanner globalScanner = new Scanner(System.in);
 }

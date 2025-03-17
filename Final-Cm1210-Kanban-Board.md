@@ -8,6 +8,7 @@ kanban-plugin: board
 
 - [ ] Q1A: Replace Exception Printouts with proper text based responses.
 - [ ] Debug that 1 is errored out and that negatives aren't accepted
+- [ ] [[Q1B Going through difficulties - Not using a private variable to store and use data later on. Please verify and create fix in Main file.]]
 
 
 ## Blocked
@@ -34,7 +35,7 @@ kanban-plugin: board
 **Complete**
 - [x] Q1B: Step 3 - Make finished square.
 - [x] Q1B: Step 2 - Verify user input.
-- [x] 
+- [ ] [x]
 - [x] [[Q1B Step 1 - Print instructions and Query user about size of array.]]
 - [x] [[Q1B New code structure for entire program]]
 - [x] [[Q1B New idea make a function that takes a row, column and direction.]]
