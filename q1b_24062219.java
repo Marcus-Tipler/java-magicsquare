@@ -20,10 +20,10 @@ public class q1b_24062219 extends q1a_24062219 {
 
         String[] sizeOfMatrix = execStart(); 
         int checkedSize = execVerify(sizeOfMatrix);
-        int[][] execSquared = execSquare(checkedSize); //FIXME: Whilst value is negative, loop and ask again.
+        int[][] execSquared = execSquare(checkedSize);
         execPrint(execSquared, checkedSize);
-        int[][] shuffled = execRandom(checkedSize, execSquared);
-        // int[][] shuffled = execShift(execSquared, 3 - 1, 1 - 1, 1);
+        int[][] shuffled = execRandom(checkedSize, execSquared); 
+        // int[][] shuffled = execShift(execSquared, 3 - 1, 1 - 1, 1); 
         execPrint(shuffled, checkedSize);
     }
 
