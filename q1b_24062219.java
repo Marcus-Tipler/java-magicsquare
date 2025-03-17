@@ -5,11 +5,12 @@ public class q1b_24062219 extends q1a_24062219 {
     public q1b_24062219() {
         super();
     }
-
-    public String[] sizeOfMatrix;
-    public int checkedSize;
-    public int[][] execSquared;
-
+    // Setting up a 'storage bank' for variables.
+    public static String[] sizeOfMatrix;
+    public static int checkedSize;
+    public static int[][] execSquared;
+    public static int[][] shuffled;
+    public static String[] interactReturn;
 
     public static void main(String[] args) {
         // ----------------------------------------------------------------
@@ -22,15 +23,13 @@ public class q1b_24062219 extends q1a_24062219 {
         // requested actions until the matrix is that of a magic square.
         // ----------------------------------------------------------------
         q1b_24062219 q1b = new q1b_24062219();
-        String[] sizeOfMatrix = q1b.execStart(); 
-        int checkedSize = q1b.execVerify(sizeOfMatrix);
-        int[][] execSquared = q1b.execSquare(checkedSize);
-        // execPrint(execSquared, checkedSize);
-        int[][] shuffled = q1b.execRandom(checkedSize, execSquared); 
-        // int[][] shuffled = execShift(execSquared, 1 - 1, 1 - 1, 1); 
+        sizeOfMatrix = q1b.execStart(); 
+        checkedSize = q1b.execVerify(sizeOfMatrix);
+        execSquared = q1b.execSquare(checkedSize);
+        shuffled = q1b.execRandom(checkedSize, execSquared); 
         q1b.execPrint(shuffled, checkedSize);
         q1b.execExplain();
-        String[] interactReturn = q1b.execInteract();
+        interactReturn = q1b.execInteract();
         q1b.execTEST();
     }
 
@@ -41,10 +40,10 @@ public class q1b_24062219 extends q1a_24062219 {
     public String[] execStart() {
         System.out.println("Hello user! Welcome to the Magic Square Game!");
         System.out.println("Please enter an odd number for the size of the array (3, 5, 7, etc.): ");
-        String sizeOfMatrix = globalScanner.nextLine();
-        System.out.println("Matrix Size is: " + sizeOfMatrix);
+        String userSizeOfMatrix = globalScanner.nextLine();
+        System.out.println("Matrix Size is: " + userSizeOfMatrix);
         // requestSizeOfMatrix.close();
-        return new String[]{sizeOfMatrix};
+        return new String[]{userSizeOfMatrix};
     }
 
 
@@ -90,7 +89,7 @@ public class q1b_24062219 extends q1a_24062219 {
     // Shuffle the matrix using RandInt and 'execShift' function.
     // ----------------------------------------------------------------
     public int[][] execRandom(int arraySize, int[][] array) {
-        int[][] shuffled = null;
+        shuffled = null;
         Random randInt = new Random();
         for (int i = 0; i < arraySize*arraySize; i++) {
             int row = randInt.nextInt(0, 3);
@@ -116,10 +115,10 @@ public class q1b_24062219 extends q1a_24062219 {
     public String[] execInteract() {
         System.out.println("TEST");
         System.out.println("ANOTHER TEST: ");
-        String sizeOfMatrix = globalScanner.nextLine();
-        System.out.println("TEST is: " + sizeOfMatrix);
+        String userSizeOfMatrix = globalScanner.nextLine();
+        System.out.println("TEST is: " + userSizeOfMatrix);
         globalScanner.close();
-        return new String[]{sizeOfMatrix};
+        return new String[]{userSizeOfMatrix};
     }
 
 
