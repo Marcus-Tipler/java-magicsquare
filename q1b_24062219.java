@@ -6,6 +6,10 @@ public class q1b_24062219 extends q1a_24062219 {
         super();
     }
 
+    public String[] sizeOfMatrix;
+    public int checkedSize;
+    public int[][] execSquared;
+
 
     public static void main(String[] args) {
         // ----------------------------------------------------------------
@@ -27,6 +31,7 @@ public class q1b_24062219 extends q1a_24062219 {
         execPrint(shuffled, checkedSize);
         execExplain();
         String[] interactReturn = execInteract();
+        execTEST();
     }
 
 
@@ -138,4 +143,8 @@ public class q1b_24062219 extends q1a_24062219 {
     // Initiate the Scanner for the entire program.
     // ----------------------------------------------------------------
     static Scanner globalScanner = new Scanner(System.in);
+
+    static void execTEST() {
+        System.out.println(checkedSize);
+    }
 }
