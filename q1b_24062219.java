@@ -20,8 +20,13 @@ public class q1b_24062219 extends q1a_24062219 {
         String[] sizeOfMatrix = execStart(); 
         int checkedSize = execVerify(sizeOfMatrix);
         int[][] execSquared = execSquare(checkedSize); //FIXME: Whilst value is negative, loop and ask again.
+        execPrint(execSquared, checkedSize);
+        // TEST
+        int[][] shuffled = execShift(execSquared, 1, 1, 1);
+        execPrint(shuffled, checkedSize);
+        // ...
         // execPrint(execSquared, checkedSize);
-
+        // System.out.println("Congratulations! You've made a magic square!");
     }
 
 
@@ -42,8 +47,17 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     // Shifts the matrix based on Column, Row and Direction data.
     // ----------------------------------------------------------------
-    static int[][] execShift(int[][] square, int i, int j, String d) {
-        
+    static int[][] execShift(int[][] square, int row, int col, int dir) {
+        // Random randInt = new Random();
+        int[][] aCopy = (int[][])square.clone();
+        // int m = randInt.nextInt(i + 1);
+        // int n = randInt.nextInt(j + 1);
+
+        // Swap the elements at the current indices using a buffer.
+        int buffer = aCopy[row][col];
+        aCopy[row][col] = aCopy[row + 1][col + 1];
+        aCopy[row + 1][col + 1] = buffer;
+        return aCopy;
     }
 
     

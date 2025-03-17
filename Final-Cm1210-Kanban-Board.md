@@ -20,24 +20,24 @@ kanban-plugin: board
 
 ## In Progress
 
-- [ ] [[Q1B Step 1 - Print instructions and Query user about size of array.]]
-- [ ] Q1B: Step 2 - Verify user input.
-- [ ] Q1B: Step 3 - Make finished square.
-- [ ] Q1B: Step 4 - Shuffle square using 'execShift' n\*\*2 times.
+- [ ] [[Q1B Step 4 - Shuffle square using 'execShift' n 2 times.]]
 - [ ] Q1B: Step 5 - Prompt user with instructions and printed square.
 - [ ] Q1B: Step 6 - Start a loop that queries and performs the users requested actions until the matrix is that of a magic square.
 
 
 ## PR Ready
 
-- [ ] Comment all the code and what it achieves
-- [ ] [[Q1B New idea make a function that takes a row, column and direction.]]
-- [ ] [[Q1B New code structure for entire program]]
 
 
 ## Done
 
 **Complete**
+- [x] Q1B: Step 3 - Make finished square.
+- [x] Q1B: Step 2 - Verify user input.
+- [x] [[Q1B Step 1 - Print instructions and Query user about size of array.]]
+- [x] [[Q1B New code structure for entire program]]
+- [x] [[Q1B New idea make a function that takes a row, column and direction.]]
+- [x] Comment all the code and what it achieves
 - [x] Q1B: Import from q1a_24062219 for q1b_24062219
 - [x] [[New shuffling program to be made]]
 - [x] Create a new file called q1b_24062219
