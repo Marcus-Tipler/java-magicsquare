@@ -23,7 +23,7 @@ public class q1b_24062219 extends q1a_24062219 {
         int[][] execSquared = execSquare(checkedSize);
         execPrint(execSquared, checkedSize);
         int[][] shuffled = execRandom(checkedSize, execSquared); 
-        // int[][] shuffled = execShift(execSquared, 3 - 1, 1 - 1, 1); 
+        // int[][] shuffled = execShift(execSquared, 1 - 1, 1 - 1, 1); 
         execPrint(shuffled, checkedSize);
     }
 
