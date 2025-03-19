@@ -29,7 +29,6 @@ public class q1b_24062219 extends q1a_24062219 {
         q1b.execRandom(checkedSize, execSquared); 
         q1b.execPrint(shuffled, checkedSize);
         q1b.execExplain();
-        q1b.execInteract();
         q1b.execLoop();
     }
 
@@ -162,7 +161,30 @@ public class q1b_24062219 extends q1a_24062219 {
     // Verify the completion of the matrix to a completed Magic Square.
     // ----------------------------------------------------------------
     public void matrixCompletionTracker () {
-        matrixCompleted = true;
+        int diagSum1 = 0, diagSum2 = 0;
+
+        // Checking the correctness of the diagonals
+        for (int i = 0; i < checkedSize; i++)
+        {
+            diagSum1 += shuffled[i][i];
+            diagSum2 += shuffled[i][checkedSize-1-i];
+        }
+        if(diagSum1!=diagSum2) {return;} 
+        // returning false if the diagonals aren't correct.
+
+        // Checking the correctness of the rows and columns.
+        for (int i = 0; i < checkedSize; i++) {
+            int rowSum = 0, colSum = 0;
+            for (int j = 0; j < checkedSize; j++)
+            {
+                rowSum += shuffled[i][j];
+                colSum += shuffled[j][i];
+            }
+            if (rowSum != colSum || colSum != diagSum1) {return;} 
+            // returning false if the rows and columns aren't correct.
+        }
+        
+        matrixCompleted = true; // returns true if the matrix is completed.
     }
 
 
@@ -172,6 +194,7 @@ public class q1b_24062219 extends q1a_24062219 {
     public void execLoop () {
         matrixCompleted = false;
         while (!matrixCompleted) {
+            execInteract();
             execVerifyDirection();
             execPrint(shuffled, checkedSize);
             matrixCompletionTracker();
