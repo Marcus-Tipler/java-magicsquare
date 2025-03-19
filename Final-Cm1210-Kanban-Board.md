@@ -21,7 +21,6 @@ kanban-plugin: board
 
 ## In Progress
 
-- [ ] [[Q1B Step 4 - Shuffle square using 'execShift' n 2 times.]]
 - [ ] Q1B: Step 5 - Prompt user with instructions and printed square.
 - [ ] Q1B: Step 6 - Start a loop that queries and performs the users requested actions until the matrix is that of a magic square.
 
@@ -33,6 +32,7 @@ kanban-plugin: board
 ## Done
 
 **Complete**
+- [x] [[Q1B Step 4 - Shuffle square using 'execShift' n 2 times.]]
 - [x] Q1B: Step 3 - Make finished square.
 - [x] Q1B: Step 2 - Verify user input.
 - [ ] [x]

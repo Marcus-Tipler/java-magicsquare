@@ -6,11 +6,11 @@ public class q1b_24062219 extends q1a_24062219 {
         super();
     }
     // Setting up a 'storage bank' for variables.
-    public static String[] sizeOfMatrix;
     public static int checkedSize;
-    public static int[][] execSquared;
-    public static int[][] shuffled;
-    public static String[] interactReturn;
+    public static int[][] execSquared, shuffled;
+    public static String[] sizeOfMatrix, interactReturn;
+    public static boolean matrixCompleted;
+    public Scanner globalScanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         // ----------------------------------------------------------------
@@ -26,11 +26,11 @@ public class q1b_24062219 extends q1a_24062219 {
         sizeOfMatrix = q1b.execStart(); 
         checkedSize = q1b.execVerify(sizeOfMatrix);
         execSquared = q1b.execSquare(checkedSize);
-        shuffled = q1b.execRandom(checkedSize, execSquared); 
+        q1b.execRandom(checkedSize, execSquared); 
         q1b.execPrint(shuffled, checkedSize);
         q1b.execExplain();
-        interactReturn = q1b.execInteract();
-        q1b.execTEST();
+        q1b.execInteract();
+        q1b.execLoop();
     }
 
 
@@ -40,10 +40,10 @@ public class q1b_24062219 extends q1a_24062219 {
     public String[] execStart() {
         System.out.println("Hello user! Welcome to the Magic Square Game!");
         System.out.println("Please enter an odd number for the size of the array (3, 5, 7, etc.): ");
-        String userSizeOfMatrix = globalScanner.nextLine();
-        System.out.println("Matrix Size is: " + userSizeOfMatrix);
+        String[] userInput = execScanner();
+        System.out.println("You've chosen a matrix of size: " + userInput[0]);
         // requestSizeOfMatrix.close();
-        return new String[]{userSizeOfMatrix};
+        return userInput;
     }
 
 
@@ -51,10 +51,7 @@ public class q1b_24062219 extends q1a_24062219 {
     // Shifts the matrix based on Column, Row and Direction data.
     // ----------------------------------------------------------------
     public int[][] execShift(int[][] square, int row, int col, int dir) {
-        // Random randInt = new Random();
         int[][] aCopy = (int[][])square.clone();
-        // int m = randInt.nextInt(i + 1);
-        // int n = randInt.nextInt(j + 1);
 
         // Swap the elements at the current indices using a buffer.
         int n = square.length;
@@ -88,7 +85,7 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     // Shuffle the matrix using RandInt and 'execShift' function.
     // ----------------------------------------------------------------
-    public int[][] execRandom(int arraySize, int[][] array) {
+    public void execRandom(int arraySize, int[][] array) {
         shuffled = null;
         Random randInt = new Random();
         for (int i = 0; i < arraySize*arraySize; i++) {
@@ -97,7 +94,6 @@ public class q1b_24062219 extends q1a_24062219 {
             int dir = randInt.nextInt(1, 4);
             shuffled = execShift(array, row, col, dir);
         }
-        return shuffled;
     }
 
 
@@ -112,38 +108,91 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     // Query the user about the shift they'd like to perform.
     // ----------------------------------------------------------------
-    public String[] execInteract() {
+    public void execInteract() {
+        interactReturn = null;
         System.out.println("TEST");
         System.out.println("ANOTHER TEST: ");
-        String userSizeOfMatrix = globalScanner.nextLine();
-        System.out.println("TEST is: " + userSizeOfMatrix);
-        globalScanner.close();
-        return new String[]{userSizeOfMatrix};
+        String[] userInput = execScanner();
+        System.out.println("TEST is: " + userInput[0]);
+        // globalScanner.close();
+        interactReturn = userInput;
     }
 
 
     // ----------------------------------------------------------------
     // Verify the user input for the shift they'd like to perform.
     // ----------------------------------------------------------------
+    public void execVerifyDirection() {
+        String[] test;
+        int row, col, translatedDir = 0;
+        String dir;
+        while (true) {
+            try {
+                test = interactReturn[0].split(" ");
+                row = Integer.parseInt(test[0]);
+                col = Integer.parseInt(test[1]);
+                dir = test[2];
+                if (null != dir) switch (dir) {
+                    case "r" -> translatedDir = 1;
+                    case "d" -> translatedDir = 2;
+                    case "l" -> translatedDir = 3;
+                    case "u" -> translatedDir = 4;
+                    default -> {
+                        System.out.println("print met");
+                        throw new NumberFormatException("Invalid direction");
+                    }
+                }
+                if (row > checkedSize) {throw new NumberFormatException("Invalid");}
+                if (col > checkedSize) {throw new NumberFormatException("Invalid");}
+                if (row < 1) {throw new NumberFormatException("Invalid");}
+                if (col < 1) {throw new NumberFormatException("Invalid");}
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid row, column and direction (e.g. 1 2 R).");
+                test = null;
+                execInteract();
+            }
+        }
+        System.out.println("This is Test[0] from the execVerifDir function: " + test[0]);
+        execShift(shuffled, row - 1, col - 1, translatedDir);
+    }
 
     
     // ----------------------------------------------------------------
     // Verify the completion of the matrix to a completed Magic Square.
     // ----------------------------------------------------------------
+    public void matrixCompletionTracker () {
+        matrixCompleted = true;
+    }
 
+
+    // ----------------------------------------------------------------
+    // Loops the game until the matrix is completed.
+    // ----------------------------------------------------------------
+    public void execLoop () {
+        matrixCompleted = false;
+        while (!matrixCompleted) {
+            execVerifyDirection();
+            execPrint(shuffled, checkedSize);
+            matrixCompletionTracker();
+        }
+    }
 
     // ----------------------------------------------------------------
     // Prints the end game results and text.
     // ----------------------------------------------------------------
-
+    public void execEnding() {
+        globalScanner.close(); // Prevent leaks in the program.
+    }
 
 
     // ----------------------------------------------------------------
     // Initiate the Scanner for the entire program.
     // ----------------------------------------------------------------
-    public Scanner globalScanner = new Scanner(System.in);
-
-    public void execTEST() {
-        System.out.println(checkedSize);
+    public String[] execScanner() {
+        System.out.println(">> ");
+        String userSizeOfMatrix = globalScanner.nextLine();
+        System.out.println("Your input was: " + userSizeOfMatrix);
+        return new String[]{userSizeOfMatrix};
     }
 }
