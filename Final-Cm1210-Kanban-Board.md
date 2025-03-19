@@ -11,6 +11,7 @@ kanban-plugin: board
 - [ ] Debug the users moves and correct them.
 - [ ] Lower case or higher case accepted + full word accepted too.
 - [ ] Add a typewriter effect to animate the game.
+- [ ] length of input tests
 
 
 ## Blocked
