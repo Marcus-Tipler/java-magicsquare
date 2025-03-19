@@ -51,7 +51,8 @@ public class q1a_24062219 {
     public int execVerify(String[] args) {
         if (args.length > 0) {
             int n = Integer.parseInt(args[0]);
-            if (n % 2 == 0) throw new RuntimeException("\nThe entered value must be an odd number, please type the command and try again.\nUsage: java q1a_24062219 [odd number]");
+            if (n % 2 == 0) throw new RuntimeException("\n[ERROR]\nThe entered value must be an odd number, please type the command and try again.");
+            if (n < 3) throw new RuntimeException("\n[ERROR]\nThe entered value must be 3 or above, please try again.");
 
             return n;
         }

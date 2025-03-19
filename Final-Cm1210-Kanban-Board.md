@@ -6,9 +6,7 @@ kanban-plugin: board
 
 ## Backlog
 
-- [ ] Debug that 1 is errored out and that negatives aren't accepted
-- [ ] [[User experience and aesthetics are to be completed]]
-- [ ] Debug the users moves and correct them.
+- [ ] [[Debug the users moves and correct them.]]
 - [ ] Lower case or higher case accepted + full word accepted too.
 - [ ] Add a typewriter effect to animate the game.
 - [ ] length of input tests
@@ -25,11 +23,13 @@ kanban-plugin: board
 
 ## In Progress
 
-- [ ] Q1B: Step 5 - Prompt user with instructions and printed square.
+- [ ] [[User experience and aesthetics are to be completed]]
 
 
 ## PR Ready
 
+- [ ] Q1B: Step 5 - Prompt user with instructions and printed square.
+- [ ] Debug that 1 is errored out and that negatives aren't accepted
 
 
 ## Done

@@ -30,19 +30,33 @@ public class q1b_24062219 extends q1a_24062219 {
         // requested actions until the matrix is that of a magic square.
         // ----------------------------------------------------------------
         q1b_24062219 q1b = new q1b_24062219();
-        sizeOfMatrix = q1b.execStart(); 
-        checkedSize = q1b.execVerify(sizeOfMatrix);
-        execSquared = q1b.execSquare(checkedSize);
-        q1b.execRandom(checkedSize, execSquared); 
-        q1b.execPrint(shuffled, checkedSize);
+        q1b.execStart();
         q1b.execLoop();
+    }
+    // ----------------------------------------------------------------
+    //
+    // ----------------------------------------------------------------
+    public void execStart() {
+        sizeOfMatrix = execIntro(); 
+        while (true) {
+            try {
+                checkedSize = execVerify(sizeOfMatrix);
+                break;
+            } catch (RuntimeException e) {
+                System.out.println(ANSI_RED + e.getMessage() + ANSI_RESET + "\n");
+                execStart();
+            }
+        }
+        execSquared = execSquare(checkedSize);
+        execRandom(checkedSize, execSquared); 
+        execPrint(shuffled, checkedSize);
     }
 
 
     // ----------------------------------------------------------------
     // Print instructions and Query user about size of array.
     // ----------------------------------------------------------------
-    public String[] execStart() {
+    public String[] execIntro() {
         System.out.println("[" + ANSI_CYAN + "WELCOME" + ANSI_RESET + "]" + ANSI_GREEN + "\nHello {user}! Welcome to the TEMPLE OF NOD!" + ANSI_RESET + "\n");
         System.out.println("[" + ANSI_CYAN + "STORY" + ANSI_RESET + "]" + "\n*you walk up to the temple entrance, and discover their " + ANSI_ORANGE + "front door is locked" + ANSI_RESET + ". \nWhat a shame!\n" + "There does however seem to be hope! The door seems to be " + ANSI_ORANGE + "locked with a puzzle" + ANSI_RESET + ".\nComplete the puzzle and defeat the EMPIRE OF NOD!" + "\n");
         System.out.println("[" + ANSI_CYAN + "INSTRUCTIONS" + ANSI_RESET + "]" + "\nThe puzzle located at the front entrance is a Magic Square. " + ANSI_ORANGE + "\nComplete the matrix to unlock the temple" + "." + ANSI_RESET + "\n");
