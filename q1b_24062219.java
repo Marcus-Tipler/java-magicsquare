@@ -11,6 +11,13 @@ public class q1b_24062219 extends q1a_24062219 {
     public static String[] sizeOfMatrix, interactReturn;
     public static boolean matrixCompleted;
     public Scanner globalScanner = new Scanner(System.in);
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_ORANGE = "\033[38;5;208m";
+    public static final String ANSI_GREY = "\033[38;5;244m";
 
     public static void main(String[] args) {
         // ----------------------------------------------------------------
@@ -28,7 +35,6 @@ public class q1b_24062219 extends q1a_24062219 {
         execSquared = q1b.execSquare(checkedSize);
         q1b.execRandom(checkedSize, execSquared); 
         q1b.execPrint(shuffled, checkedSize);
-        q1b.execExplain();
         q1b.execLoop();
     }
 
@@ -37,11 +43,14 @@ public class q1b_24062219 extends q1a_24062219 {
     // Print instructions and Query user about size of array.
     // ----------------------------------------------------------------
     public String[] execStart() {
-        System.out.println("Hello user! Welcome to the Magic Square Game!");
-        System.out.println("Please enter an odd number for the size of the array (3, 5, 7, etc.): ");
+        System.out.println("[" + ANSI_CYAN + "WELCOME" + ANSI_RESET + "]" + ANSI_GREEN + "\nHello {user}! Welcome to the TEMPLE OF NOD!" + ANSI_RESET + "\n");
+        System.out.println("[" + ANSI_CYAN + "STORY" + ANSI_RESET + "]" + "\n*you walk up to the temple entrance, and discover their " + ANSI_ORANGE + "front door is locked" + ANSI_RESET + ". \nWhat a shame!\n" + "There does however seem to be hope! The door seems to be " + ANSI_ORANGE + "locked with a puzzle" + ANSI_RESET + ".\nComplete the puzzle and defeat the EMPIRE OF NOD!" + "\n");
+        System.out.println("[" + ANSI_CYAN + "INSTRUCTIONS" + ANSI_RESET + "]" + "\nThe puzzle located at the front entrance is a Magic Square. " + ANSI_ORANGE + "\nComplete the matrix to unlock the temple" + "." + ANSI_RESET + "\n");
+        System.out.println("[" + ANSI_CYAN + "HOW TO" + ANSI_RESET + "]" + "\nTo complete the puzzle, make sure all rows, columns and diagonals are equal to the same value. \nTo swap a value, type the following: {row number} {column number} {direction}\nYou can only switch one value at a time." + ANSI_RESET + "\n");
+        System.out.println(ANSI_GREEN + "GOOD LUCK!" + ANSI_RESET + "\n");
+        System.out.print(ANSI_GREY + "Please enter an array size " + ANSI_RESET + ">> " + ANSI_GREY);
         String[] userInput = execScanner();
-        System.out.println("You've chosen a matrix of size: " + userInput[0]);
-        // requestSizeOfMatrix.close();
+        System.out.println("\n[" + ANSI_CYAN + "STORY" + ANSI_RESET + "]" + "\nyou walk up to the puzzle towards the main entrance, it displays the following." + "\n");
         return userInput;
     }
 
@@ -99,9 +108,6 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     // Prompt the user with instructions and the shuffled matrix.
     // ----------------------------------------------------------------
-    public void execExplain() {
-        System.out.println("All you have to do is the following");
-    }
 
     
     // ----------------------------------------------------------------
@@ -109,12 +115,9 @@ public class q1b_24062219 extends q1a_24062219 {
     // ----------------------------------------------------------------
     public void execInteract() {
         interactReturn = null;
-        System.out.println("TEST");
-        System.out.println("ANOTHER TEST: ");
-        String[] userInput = execScanner();
-        System.out.println("TEST is: " + userInput[0]);
-        // globalScanner.close();
-        interactReturn = userInput;
+        System.out.println("\n[" + ANSI_CYAN + "USAGE" + ANSI_RESET + "]" + "\nenter: {row number} {column number} {direction}\nexample: 1 1 up" + ANSI_RESET + "\n");
+        System.out.print(ANSI_RESET + ">> " + ANSI_GREY);
+        interactReturn = execScanner();
     }
 
 
@@ -152,7 +155,7 @@ public class q1b_24062219 extends q1a_24062219 {
                 execInteract();
             }
         }
-        System.out.println("This is Test[0] from the execVerifDir function: " + test[0]);
+        System.out.println("");
         execShift(shuffled, row - 1, col - 1, translatedDir);
     }
 
@@ -183,7 +186,7 @@ public class q1b_24062219 extends q1a_24062219 {
             if (rowSum != colSum || colSum != diagSum1) {return;} 
             // returning false if the rows and columns aren't correct.
         }
-        
+
         matrixCompleted = true; // returns true if the matrix is completed.
     }
 
@@ -202,7 +205,7 @@ public class q1b_24062219 extends q1a_24062219 {
     }
 
     // ----------------------------------------------------------------
-    // Prints the end game results and text.
+    // Prints the end game results closes the program properly.
     // ----------------------------------------------------------------
     public void execEnding() {
         globalScanner.close(); // Prevent leaks in the program.
@@ -213,9 +216,8 @@ public class q1b_24062219 extends q1a_24062219 {
     // Initiate the Scanner for the entire program.
     // ----------------------------------------------------------------
     public String[] execScanner() {
-        System.out.println(">> ");
         String userSizeOfMatrix = globalScanner.nextLine();
-        System.out.println("Your input was: " + userSizeOfMatrix);
+        System.out.println(ANSI_RESET + ">> " + ANSI_GREY + "You entered: " + userSizeOfMatrix + ANSI_RESET);
         return new String[]{userSizeOfMatrix};
     }
 }
