@@ -104,11 +104,6 @@ public class q1b_24062219 extends q1a_24062219 {
         }
     }
 
-
-    // ----------------------------------------------------------------
-    // Prompt the user with instructions and the shuffled matrix.
-    // ----------------------------------------------------------------
-
     
     // ----------------------------------------------------------------
     // Query the user about the shift they'd like to perform.
