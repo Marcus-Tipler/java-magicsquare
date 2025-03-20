@@ -8,6 +8,7 @@ kanban-plugin: board
 
 - [ ] Add a typewriter effect to animate the game.
 - [ ] length of input tests
+- [ ] [[REPORT]]
 
 
 ## Blocked
@@ -25,18 +26,18 @@ kanban-plugin: board
 
 ## PR Ready
 
-- [ ] [[User experience and aesthetics are to be completed]]
-- [ ] [[Debug the users moves and correct them.]]
-- [ ] Lack of input for array size causes string error that is incorrectly handled. (no [ERROR])
-- [ ] Lower case or higher case accepted + full word accepted too.
-- [ ] Q1B: Step 5 - Prompt user with instructions and printed square.
-- [ ] Debug that 1 is errored out and that negatives aren't accepted
-- [ ] Fix issue with inverted user input in row / col
 
 
 ## Done
 
 **Complete**
+- [x] Fix issue with inverted user input in row / col
+- [x] Debug that 1 is errored out and that negatives aren't accepted
+- [x] Q1B: Step 5 - Prompt user with instructions and printed square.
+- [x] Lower case or higher case accepted + full word accepted too.
+- [x] Lack of input for array size causes string error that is incorrectly handled. (no [ERROR])
+- [x] [[Debug the users moves and correct them.]]
+- [x] [[User experience and aesthetics are to be completed]]
 - [x] [[Q1B Going through difficulties - Not using a private variable to store and use data later on. Please verify and create fix in Main file.]]
 - [x] Q1B: Step 6 - Start a loop that queries and performs the users requested actions until the matrix is that of a magic square.
 - [x] [[Q1B Step 4 - Shuffle square using 'execShift' n 2 times.]]

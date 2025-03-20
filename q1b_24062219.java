@@ -30,6 +30,7 @@ public class q1b_24062219 extends q1a_24062219 {
         // requested actions until the matrix is that of a magic square.
         // ----------------------------------------------------------------
         q1b_24062219 q1b = new q1b_24062219();
+
         q1b.execStart();
         q1b.execLoop();
         q1b.execEnding();
@@ -113,8 +114,8 @@ public class q1b_24062219 extends q1a_24062219 {
         shuffled = null;
         Random randInt = new Random();
         for (int i = 0; i < arraySize*arraySize; i++) {
-            int row = randInt.nextInt(0, 3);
-            int col = randInt.nextInt(0, 3);
+            int row = randInt.nextInt(0, arraySize);
+            int col = randInt.nextInt(0, arraySize);
             int dir = randInt.nextInt(1, 4);
             shuffled = execShift(array, row, col, dir);
         }
