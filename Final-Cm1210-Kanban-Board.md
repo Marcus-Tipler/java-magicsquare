@@ -6,10 +6,6 @@ kanban-plugin: board
 
 ## Backlog
 
-- [ ] Debug that 1 is errored out and that negatives aren't accepted
-- [ ] [[User experience and aesthetics are to be completed]]
-- [ ] Debug the users moves and correct them.
-- [ ] Lower case or higher case accepted + full word accepted too.
 - [ ] Add a typewriter effect to animate the game.
 - [ ] length of input tests
 
@@ -25,11 +21,17 @@ kanban-plugin: board
 
 ## In Progress
 
-- [ ] Q1B: Step 5 - Prompt user with instructions and printed square.
 
 
 ## PR Ready
 
+- [ ] [[User experience and aesthetics are to be completed]]
+- [ ] [[Debug the users moves and correct them.]]
+- [ ] Lack of input for array size causes string error that is incorrectly handled. (no [ERROR])
+- [ ] Lower case or higher case accepted + full word accepted too.
+- [ ] Q1B: Step 5 - Prompt user with instructions and printed square.
+- [ ] Debug that 1 is errored out and that negatives aren't accepted
+- [ ] Fix issue with inverted user input in row / col
 
 
 ## Done

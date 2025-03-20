@@ -6,7 +6,7 @@ public class q1b_24062219 extends q1a_24062219 {
         super();
     }
     // Setting up a 'storage bank' for variables.
-    public static int checkedSize;
+    public static int checkedSize, totalMoves;
     public static int[][] execSquared, shuffled;
     public static String[] sizeOfMatrix, interactReturn;
     public static boolean matrixCompleted;
@@ -30,19 +30,35 @@ public class q1b_24062219 extends q1a_24062219 {
         // requested actions until the matrix is that of a magic square.
         // ----------------------------------------------------------------
         q1b_24062219 q1b = new q1b_24062219();
-        sizeOfMatrix = q1b.execStart(); 
-        checkedSize = q1b.execVerify(sizeOfMatrix);
-        execSquared = q1b.execSquare(checkedSize);
-        q1b.execRandom(checkedSize, execSquared); 
-        q1b.execPrint(shuffled, checkedSize);
+        q1b.execStart();
         q1b.execLoop();
+        q1b.execEnding();
+    }
+    // ----------------------------------------------------------------
+    // Error handling implementation for all beginning methods.
+    // ----------------------------------------------------------------
+    public void execStart() {
+        boolean errorHandler = false;
+        while (!errorHandler) {
+            try {
+                sizeOfMatrix = null;
+                sizeOfMatrix = execIntro(); 
+                checkedSize = execVerify(sizeOfMatrix);
+                errorHandler = true;
+            } catch (RuntimeException e) {
+                System.out.println(ANSI_RED + "\n[ERROR]\n" + e.getMessage() + ANSI_RESET + "\n");
+            }
+        }
+        execSquared = execSquare(checkedSize);
+        execRandom(checkedSize, execSquared); 
+        execPrint(shuffled, checkedSize);
     }
 
 
     // ----------------------------------------------------------------
     // Print instructions and Query user about size of array.
     // ----------------------------------------------------------------
-    public String[] execStart() {
+    public String[] execIntro() {
         System.out.println("[" + ANSI_CYAN + "WELCOME" + ANSI_RESET + "]" + ANSI_GREEN + "\nHello {user}! Welcome to the TEMPLE OF NOD!" + ANSI_RESET + "\n");
         System.out.println("[" + ANSI_CYAN + "STORY" + ANSI_RESET + "]" + "\n*you walk up to the temple entrance, and discover their " + ANSI_ORANGE + "front door is locked" + ANSI_RESET + ". \nWhat a shame!\n" + "There does however seem to be hope! The door seems to be " + ANSI_ORANGE + "locked with a puzzle" + ANSI_RESET + ".\nComplete the puzzle and defeat the EMPIRE OF NOD!" + "\n");
         System.out.println("[" + ANSI_CYAN + "INSTRUCTIONS" + ANSI_RESET + "]" + "\nThe puzzle located at the front entrance is a Magic Square. " + ANSI_ORANGE + "\nComplete the matrix to unlock the temple" + "." + ANSI_RESET + "\n");
@@ -66,24 +82,24 @@ public class q1b_24062219 extends q1a_24062219 {
 
         switch (dir) {
             case 1 -> { // Right
-                int buffer = aCopy[col][(row - 1 + n) % n];
-                aCopy[col][(row - 1 + n) % n] = aCopy[col][row];
-                aCopy[col][row] = buffer;
+                int buffer = aCopy[row][(col + 1 + n) % n];
+                aCopy[row][(col + 1 + n) % n] = aCopy[row][col];
+                aCopy[row][col] = buffer;
             }
             case 2 -> { // Down
-                int buffer = aCopy[(col + 1 + n) % n][row];
-                aCopy[(col + 1 + n) % n][row] = aCopy[col][row];
-                aCopy[col][row] = buffer;
+                int buffer = aCopy[(row + 1 + n) % n][col];
+                aCopy[(row + 1 + n) % n][col] = aCopy[row][col];
+                aCopy[row][col] = buffer;
             }
             case 3 -> { // Left
-                int buffer = aCopy[col][(row + 1 + n) % n];
-                aCopy[col][(row + 1 + n) % n] = aCopy[col][row];
-                aCopy[col][row] = buffer;
+                int buffer = aCopy[row][(col - 1 + n) % n];
+                aCopy[row][(col - 1 + n) % n] = aCopy[row][col];
+                aCopy[row][col] = buffer;
             }
             default -> { // Up
-                int buffer = aCopy[(col - 1 + n) % n][row];
-                aCopy[(col - 1 + n) % n][row] = aCopy[col][row];
-                aCopy[col][row] = buffer;
+                int buffer = aCopy[(row - 1 + n) % n][col];
+                aCopy[(row - 1 + n) % n][col] = aCopy[row][col];
+                aCopy[row][col] = buffer;
             }
         }
         return aCopy;
@@ -128,14 +144,17 @@ public class q1b_24062219 extends q1a_24062219 {
                 test = interactReturn[0].split(" ");
                 row = Integer.parseInt(test[0]);
                 col = Integer.parseInt(test[1]);
-                dir = test[2];
+                dir = test[2].toLowerCase();
                 if (null != dir) switch (dir) {
+                    case "right" -> translatedDir = 1;
                     case "r" -> translatedDir = 1;
+                    case "down" -> translatedDir = 2;
                     case "d" -> translatedDir = 2;
+                    case "left" -> translatedDir = 3;
                     case "l" -> translatedDir = 3;
+                    case "up" -> translatedDir = 4;
                     case "u" -> translatedDir = 4;
                     default -> {
-                        System.out.println("print met");
                         throw new NumberFormatException("Invalid direction");
                     }
                 }
@@ -145,7 +164,7 @@ public class q1b_24062219 extends q1a_24062219 {
                 if (col < 1) {throw new NumberFormatException("Invalid");}
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid row, column and direction (e.g. 1 2 R).");
+                System.out.println(ANSI_RED + "\n[ERROR]\nInvalid input. Please enter a valid row, column and direction (e.g. 1 1 up)." + ANSI_RESET);
                 test = null;
                 execInteract();
             }
@@ -192,6 +211,7 @@ public class q1b_24062219 extends q1a_24062219 {
     public void execLoop () {
         matrixCompleted = false;
         while (!matrixCompleted) {
+            totalMoves = totalMoves + 1;
             execInteract();
             execVerifyDirection();
             execPrint(shuffled, checkedSize);
@@ -203,6 +223,9 @@ public class q1b_24062219 extends q1a_24062219 {
     // Prints the end game results closes the program properly.
     // ----------------------------------------------------------------
     public void execEnding() {
+        System.out.println("\n[" + ANSI_CYAN + "STORY" + ANSI_RESET + "]" + "\nYou here a creak sound coming from the door, and suddenly the floor splits underneath your feet.\nLuckily you manage to pull yourself back up to the entrance, only to find that the Empire Of NOD has already left the temple." + ANSI_RESET + "\n");
+        System.out.println(ANSI_GREEN + "YOU WIN" + ANSI_RESET + "\n");
+        System.out.println(ANSI_GREEN + "YOU COMPLETED THE PUZZLE IN: " + totalMoves + " MOVES" + ANSI_RESET + "\n");
         globalScanner.close(); // Prevent leaks in the program.
     }
 
