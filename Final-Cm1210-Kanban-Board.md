@@ -9,6 +9,7 @@ kanban-plugin: board
 - [ ] Add a typewriter effect to animate the game.
 - [ ] length of input tests
 - [ ] [[REPORT]]
+- [ ] Work on exponentially replacing dificulty
 
 
 ## Blocked
